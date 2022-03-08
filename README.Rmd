@@ -1,5 +1,6 @@
 ---
 output: github_document
+always_allow_html: true
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -11,6 +12,9 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+
+library(tidyverse)
+library(kableExtra)
 ```
 
 # TidySpectrum
@@ -25,9 +29,9 @@ The goal of TidySpectrum is to provide an easy tool for tidying SecondSpectrum P
 
 ## Installation
 
-You can install the development version of TidySpectrum from Github[www.github.com/LasseIshoi/TidySpectrum] with:
+You can install the development version of TidySpectrum from [Github](www.github.com/LasseIshoi/TidySpectrum) with:
 
-``` {r}
+``` {r install package, results = FALSE, message = FALSE}
 # install.packages("devtools")
 devtools::install_github("LasseIshoi/TidySpectrum")
 ```
@@ -38,19 +42,30 @@ This is a basic example of how to use the TidySpectrum package.
 
 Below is an example of a Physical Splits csv file from SecondSpectrum
 
-```{r SecondSpectrum csv file}
+```{r SecondSpectrum csv file, echo=FALSE}
+library(TidySpectrum)
 
-head(sample_data, 30)
+head_Spectrum <- head(sample_data, 40)
+
+kableExtra::kable(head_Spectrum) %>% kableExtra::kable_paper()
 
 ```
 
 By using the `tidy_data` function this csv file is transformed to a tidy format
 
-```{r example, warning=FALSE}
+```{r example, warning=FALSE, message=FALSE}
 library(TidySpectrum)
 
 data_tidy <- tidy_data(sample_data)
 
-head(data_tidy, 30)
+```
+
+Output in a tidy format
+
+```{r output tidy, warning=FALSE, echo = FALSE}
+
+head <- head(data_tidy, 100)
+
+kableExtra::kable(head) %>% kableExtra::kable_paper()
 
 ```
