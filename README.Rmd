@@ -1,0 +1,56 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# TidySpectrum
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of TidySpectrum is to provide an easy tool for tidying SecondSpectrum Physical Splits csv files. The package works with single files(function: `tidy_data`) and a list of files (function: `list_tidy_data`) 
+
+
+<img src="man/figures/logo.png" align="right" height="139" />
+
+## Installation
+
+You can install the development version of TidySpectrum from Github[www.github.com/LasseIshoi/TidySpectrum] with:
+
+``` {r}
+# install.packages("devtools")
+devtools::install_github("LasseIshoi/TidySpectrum")
+```
+
+## Example
+
+This is a basic example of how to use the TidySpectrum package.  
+
+Below is an example of a Physical Splits csv file from SecondSpectrum
+
+```{r SecondSpectrum csv file}
+
+head(sample_data, 30)
+
+```
+
+By using the `tidy_data` function this csv file is transformed to a tidy format
+
+```{r example, warning=FALSE}
+library(TidySpectrum)
+
+data_tidy <- tidy_data(sample_data)
+
+head(data_tidy, 30)
+
+```
