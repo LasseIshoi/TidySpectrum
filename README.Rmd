@@ -31,7 +31,7 @@ The goal of TidySpectrum is to provide an easy tool for tidying SecondSpectrum P
 
 You can install the development version of TidySpectrum from [Github](www.github.com/LasseIshoi/TidySpectrum) with:
 
-``` {r install package, results = FALSE, message = FALSE}
+``` {r install package, results = FALSE, message = FALSE, warning = FALSE}
 # install.packages("devtools")
 devtools::install_github("LasseIshoi/TidySpectrum")
 ```

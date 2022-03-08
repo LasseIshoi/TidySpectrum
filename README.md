@@ -21,7 +21,6 @@ You can install the development version of TidySpectrum from
 ``` r
 # install.packages("devtools")
 devtools::install_github("LasseIshoi/TidySpectrum")
-#> Warning: packages 'dplyr', 'tidyr', 'readr' are in use and will not be installed
 ```
 
 ## Example
