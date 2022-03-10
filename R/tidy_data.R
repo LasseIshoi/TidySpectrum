@@ -82,8 +82,8 @@ tidy_data <- function(x){
 
   #seperate team/player name from identifier , and place in new column "id"
   df_data_combined  <- df_data_combined  %>%
-    separate(col = id, into = c("id", NA), sep = "[(]") %>%
-    separate(col = team_sep, into = c("team", NA), sep = "[(]")
+    separate(col = id, into = c("id", NA), sep = " [(]") %>%
+    separate(col = team_sep, into = c("team", NA), sep = " [(]")
 
   #delete unnecessary columns
   df_data_combined <- df_data_combined %>%
