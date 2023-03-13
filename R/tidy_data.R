@@ -14,7 +14,7 @@
 #' @export tidy_data
 #' @examples tidy_data(sample_data)
 
-tidy_data <- function(x){
+tidy_data <- function(x, wide_format = FALSE){
   #extract meta data (match and date)
   Match_data <- x[1,1]
 
@@ -92,12 +92,18 @@ tidy_data <- function(x){
 
   #select first haft data
   df_data_combined_first <- df_data_combined %>%
-    select(metric:ends_with("2")) %>%
-    select(-(ends_with("2")))
+  #and calculate aggregate values
+      select(metric:ends_with("2")) %>%
+    select(-(ends_with("2"))) %>%
+    rowwise() %>%
+    mutate(first_total = sum(across(where(is.numeric)), na.rm = TRUE))
+
 
   #select second half data
   df_data_combined_second <- df_data_combined %>%
-    select(ends_with("2"):id)
+    select(ends_with("2"):id) %>%
+    rowwise() %>%
+    mutate(second_total = sum(across(where(is.numeric)), na.rm = TRUE))
 
 
   #change x to first
@@ -112,9 +118,17 @@ tidy_data <- function(x){
   df_data_combined <- bind_cols(df_data_combined_first, df_data_combined_second)
 
 
+  if(wide_format) {
+        df_data_combined
+  }
+
+  else{
 
   df_data_long <- df_data_combined %>%
     pivot_longer(cols = where(is.numeric), names_to = "split", values_to = "value")
+
+
+
 
   df_data_long <- df_data_long %>%
     separate(col = split, into = c("half", "splits"), sep = "_") %>%
@@ -124,6 +138,8 @@ tidy_data <- function(x){
   df_data_long$date <- as.Date(df_data_long$date)
 
   df_data_long
+
+}
 
 
 }

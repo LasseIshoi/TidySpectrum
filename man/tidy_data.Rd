@@ -4,7 +4,7 @@
 \alias{tidy_data}
 \title{tidy data}
 \usage{
-tidy_data(x)
+tidy_data(x, wide_format = FALSE)
 }
 \arguments{
 \item{x}{a SecondSpectrum Physical Splits csv file}
